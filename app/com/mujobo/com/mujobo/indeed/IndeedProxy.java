@@ -17,7 +17,6 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class IndeedProxy {
-    //http://api.indeed.com/ads/apisearch?publisher=926677039408069&q=java&l=istanbul&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=tr&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2
     private static final JsonParser parser = new JsonParser();
     StringBuilder querySb = new StringBuilder("http://api.indeed.com/ads/apisearch?publisher=<secret>&sort=&radius=&st=&jt=&start=&limit=100&fromage=&filter=&latlong=1&co=tr&chnl=&v=2&c0=tr&format=json");
     public List<IndeedResult> resultList = new ArrayList(25);
