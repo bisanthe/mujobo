@@ -1,0 +1,24 @@
+<div class="navbar navbar-googlenav">
+    <div class="navbar-inner">
+        <ul class="nav">
+            #{mj.liTab activeTab:activeTab, id:com.mujobo.util.HeaderTabs.main}
+                <a href="/">Ana Sayfa</a>
+            #{/mj.liTab}
+            #{mj.liTab activeTab:activeTab, id:com.mujobo.util.HeaderTabs.maps}
+                <a href="/maps/#{mj.searchLink keyword:keyword, location:location /}">Haritalar</a>
+            #{/mj.liTab}
+        </ul>
+        #{form @Main.search() , method:'GET', id:'searchForm',
+        enctype:'multipart/form-data', class:'navbar-form pull-left'}
+            <input class="span6" type="text" name="keyword" placeholder="Anahtar Kelime: Satış, Mühendis, Stajer ..." value="${keyword}">
+            <input class="span4" type="text" name="location" placeholder="Şehir: Tekirdağ, Kadıköy" value="${location}">
+            <button class="btn btn-primary" type="submit">
+                <i class="icon-search icon-white"></i>
+            </button>
+        #{/form}
+        <ul class="nav pull-right">
+            <li><a href="#" class="text-success">CV Gönder</a></li>
+            <li><a href="#">Kullanıcı Girişi</a></li>
+        </ul>
+    </div>
+</div>

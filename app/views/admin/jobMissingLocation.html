@@ -1,0 +1,45 @@
+#{extends 'admin.html' /} #{set title:'Lokasyonu Olmayan Isler - Y&ouml;netim' /}
+<div class="row-fluid">
+    <div class="span11">
+        <div class="span11">
+            <input type="text">
+            <button onclick="searchJob();">Ara</button>
+        </div>
+        <div class="span12">
+            <table class="table table-striped">
+                <thead>
+                    <td>#</td>
+                    <td>id</td>
+                    <td>title</td>
+                    <td>company</td>
+                    <td>loc</td>
+                    <td>source</td>
+                    <td>latlng</td>
+                    <td>Ask Location</td>
+                    <td>update</td>
+                </thead>
+                #{list jobList , as:'job'}
+                    <tr>
+                        <form method="POST" action="@{Admin.updateJobLocation()}">
+                            <input type="hidden" value="${job.id}" name="jobId">
+                            <input type="hidden" value="${type}"   name="type">
+                            <td>${job_index}</td>
+                            <td>${job.id}</td>
+                            <td><a href="${job.url}" target="_blank">${job.title.shorten(30)}</a></td>
+                            <td>${job.company.name.shorten(30)}</td>
+                            <td>${job.locationList}</td>
+                            <td>${job.source}</td>
+                            <td><input type="text" value="${job.getFirstLatLng()}" name="latlng" style="width: 160px;"></td>
+                            <td>
+                                <label class="checkbox">
+                                    <input type="checkbox" name="askJobLocation" ${job.askLocation ? 'checked':''}>Ask Job Location
+                                </label>
+                            </td>
+                            <td><button type="submit">Update</button></td>
+                        </form>
+                    </tr>
+                #{/list}
+            </table>
+        </div>
+    </div>
+</div>

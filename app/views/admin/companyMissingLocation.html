@@ -1,0 +1,50 @@
+#{extends 'admin.html' /} #{set title:'Lokasyonu Olmayan Sirketler - Y&ouml;netim' /}
+<div class="row-fluid">
+    <div class="span11">
+        <div class="span11">
+            <input type="text">
+            <button onclick="searchJob();">Ara</button>
+        </div>
+        <div class="span12">
+            <table class="table table-striped">
+                <thead>
+                <td>#</td>
+                <td>id</td>
+                <td>name</td>
+                <td>isler</td>
+                <td>sample</td>
+                <td>loc name</td>
+                <td>latlng</td>
+                <td>Update Jobs</td>
+                <td>Ask Location</td>
+                <td>update</td>
+                </thead>
+                #{list companyList , as:'company'}
+                <tr>
+                    <form method="POST" action="@{Admin.updateCompanyLocation()}">
+                        <input type="hidden" value="${company.id}" name="companyId">
+                        <td>${company_index}</td>
+                        <td>${company.id}</td>
+                        <td><a href="https://www.google.com/#q=${company.name}" target="_blank">${company.name.shorten(40)}</a></td>
+                        <td><a href="@{Admin.getJobsForCompany(company.id)}">isler</a></td>
+                        <td><a href="${company.randomJobUrl()}" target="_blank">sample</a></td>
+                        <td><input type="text" value="${company.firstJobLocationName()}" name="locationName"/></td>
+                        <td><input type="text" value="0,0" name="latlng" style="width: 160px;"></td>
+                        <td>
+                            <label class="checkbox">
+                                <input type="checkbox" name="updateAttachedJobs" checked>Update Jobs
+                            </label>
+                        </td>
+                        <td>
+                            <label class="checkbox">
+                                <input type="checkbox" name="askLocation" ${company.askLocation ? 'checked':''}>Ask Job Location
+                            </label>
+                        </td>
+                        <td><button type="submit">Update</button></td>
+                    </form>
+                </tr>
+                #{/list}
+            </table>
+        </div>
+    </div>
+</div>

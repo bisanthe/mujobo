@@ -1,0 +1,9 @@
+# Application dependencies
+
+require:
+    - play
+    - org.apache.solr -> solr-solrj 4.0.0:
+        exclude:
+          - org.slf4j -> *
+    - com.google.code.gson -> gson 2.2.2
+

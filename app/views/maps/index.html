@@ -1,0 +1,36 @@
+#{extends 'map.html' /} #{set title:'Haritadan İş Ara' /}
+<div class="row-fluid">
+    <div class="span3">
+        <div id="mapJobList" class="scrollable" style="margin-left: 15px;position: relative; overflow-y: auto; overflow-x: hidden;">
+            <div style="position: relative; height: 20px;"></div>
+            #{list jobList, as:'job'}
+                <div class="row-fluid" onclick="jobDetail('${job.id}');">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <h6 class="jobtitle">
+                                <a href="http://tr.indeed.com/rc/clk?jk=${job.key}" target="_blank" >
+                                    ${job.getActualTitle().raw()}
+                                </a>
+                            </h6>
+                            <span class="company">${job.companyName}</span> - <span class="location">${job.jobLocation.first()}</span>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <span>${job.getActualDescription().raw()}</span>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <span class="source">${job.source}</span> - <span>${new Date(job.lastUpdate.getTime()).since()}</span>
+                        </div>
+                    </div>
+                </div>
+            #{/list}
+        </div>
+    </div>
+    <div class="span9" style="margin-left: 0px; width: 76.58%;">
+        <div id="map_canvas" style="position: relative;"></div>
+    </div>
+</div>
+

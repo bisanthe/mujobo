@@ -1,0 +1,35 @@
+#{extends 'main.html' /} #{set title:'İş Ara' /}
+<div class="row-fluid" xmlns="http://www.w3.org/1999/html">
+        <div class="span6 offset2" style="margin-top: 20px;">
+            #{list jobList, as:'job'}
+                <div class="row-fluid jobcard">
+                    <div class="row-fluid">
+                        <div class="span10">
+                            <h2 class="jobtitle">
+                                <a href="${job.url}" target="_blank" >
+                                    ${job.getActualTitle().raw()}
+                                </a>
+                            </h2>
+                            <span class="company">${job.companyName}</span> - <span class="location">#{mj.first list:job.jobLocation /}</span>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span10">
+                            <span>${job.getActualDescription().raw()}</span>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span10">
+                            <span class="source">${job.source}</span> - <span>${new Date(job.lastUpdate.getTime()).since()}</span>
+                        </div>
+                    </div>
+                </div>
+            #{/list}
+        </div>
+    </div>
+    <div class="row-fluid">
+           <div class="span6 offset2">
+               <div class="pagination"></div>
+           </div>
+    </div>
+</div>
